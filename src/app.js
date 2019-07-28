@@ -8,17 +8,13 @@ dotenv.config();
 
 const app = express();
 
-if (process.env.ENV === 'Test') {
-  console.log('This is a test');
-  const db = mongoose.connect('mongodb://localhost/bookAPI_Test', {
-    useNewUrlParser: true,
-  });
-} else {
-  console.log('This is for real');
-  const db = mongoose.connect('mongodb://localhost/bookAPI', {
-    useNewUrlParser: true,
-  });
-}
+const { ENV, CONNECTION_STRING } = process.env;
+
+const db = mongoose.connect(CONNECTION_STRING, {
+  useNewUrlParser: true,
+});
+
+if (ENV === 'Test') console.log('This is a test');
 
 const port = process.env.PORT || 3000;
 
@@ -29,7 +25,7 @@ app.use('/api', bookRouter);
 
 app.get('/', (req, res) => {
   res.json({
-    books: `${req.protocol}://${req.headers.host}/api/books`,
+    books: `https://${req.headers.host}/api/books`,
   });
 });
 
