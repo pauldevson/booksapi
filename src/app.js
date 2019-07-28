@@ -14,7 +14,7 @@ if (ENV === 'Test') console.log('This is a test');
 console.log(CONNECTION_STRING);
 
 const db = mongoose.connect(
-  'mongodb://booksapidb.documents.azure.com:10255/booksApi?ssl=true&replicaSet=globaldb',
+  'mongodb://booksapidb.documents.azure.com:10255/booksApi?ssl=true',
   {
     auth: {
       user: 'booksapidb',
