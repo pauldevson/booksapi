@@ -8,7 +8,7 @@
     "test": "mocha --require @babel/register src/tests/**/*Tests.js",
     "start": "npm run prod",
     "server": "babel-node ./src/app.js",
-    "server:prod": "node ./dist/bin/www",
+    "server:prod": "node ./dist/app.js",
     "dev": "nodemon --exec babel-node ./src/app.js",
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",
