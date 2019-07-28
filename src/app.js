@@ -14,8 +14,13 @@ if (ENV === 'Test') console.log('This is a test');
 console.log(CONNECTION_STRING);
 
 const db = mongoose.connect(
-  'mongodb://booksapidb:JP0HYsqZGBngu5o6AShYHX6iwNF5n6nbWLjPVrrus9YEii3JH7ya39sJbCAJxL0EU7dnRhbjkLbwOWdnSKpHjA==@booksapidb.documents.azure.com:10255/booksApi?ssl=true',
+  'mongodb://booksapidb.documents.azure.com:10255/booksApi?ssl=true&replicaSet=globaldb',
   {
+    auth: {
+      user: 'booksapidb',
+      password:
+        'JP0HYsqZGBngu5o6AShYHX6iwNF5n6nbWLjPVrrus9YEii3JH7ya39sJbCAJxL0EU7dnRhbjkLbwOWdnSKpHjA==',
+    },
     useNewUrlParser: true,
   }
 );
