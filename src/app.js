@@ -13,17 +13,9 @@ const { ENV, CONNECTION_STRING } = process.env;
 if (ENV === 'Test') console.log('This is a test');
 console.log(CONNECTION_STRING);
 
-const db = mongoose.connect(
-  'mongodb://booksapidb.documents.azure.com:10255/booksApi?ssl=true',
-  {
-    auth: {
-      user: 'booksapidb',
-      password:
-        'JP0HYsqZGBngu5o6AShYHX6iwNF5n6nbWLjPVrrus9YEii3JH7ya39sJbCAJxL0EU7dnRhbjkLbwOWdnSKpHjA==',
-    },
-    useNewUrlParser: true,
-  }
-);
+const db = mongoose.connect(CONNECTION_STRING, {
+  useNewUrlParser: true,
+});
 
 const port = process.env.PORT || 3000;
 
@@ -42,4 +34,5 @@ app.server = app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
 
-module.exports = app;
+// module.exports = app;
+export default app;
