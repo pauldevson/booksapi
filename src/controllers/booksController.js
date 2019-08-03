@@ -29,7 +29,7 @@ export default function booksController(Book) {
         const newBook = book.toJSON();
         newBook.links = {};
         console.log('req.secure', req.secure);
-        newBook.links.self = `http${!req.secure ? 's' : ''}://${
+        newBook.links.self = `http${req.secure ? 's' : ''}://${
           req.headers.host
         }/api/books/${book._id}`;
         return newBook;

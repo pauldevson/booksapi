@@ -10,7 +10,7 @@ RUN npm install
 
 COPY src /usr/src/app/src
 
-RUN npm run build
+# RUN npm run build
 # If you are building your code for production
 # RUN npm ci --only=production
 
@@ -19,4 +19,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "node", "./dist/app.js" ]
+CMD [ "npm", "run", "prod" ]
