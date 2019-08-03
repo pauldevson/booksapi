@@ -11,7 +11,7 @@ const app = express();
 const { ENV, CONNECTION_STRING } = process.env;
 
 if (ENV === 'Test') console.log('This is a test');
-console.log(CONNECTION_STRING);
+// console.log(CONNECTION_STRING);
 
 const db = mongoose.connect(CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -25,8 +25,9 @@ app.use(bodyParser.json());
 app.use('/api', bookRouter);
 
 app.get('/', (req, res) => {
+  console.log('req.secure', req.secure);
   res.json({
-    books: `https://${req.headers.host}/api/books`,
+    books: `http${!req.secure ? 's' : ''}://${req.headers.host}/api/books`,
   });
 });
 

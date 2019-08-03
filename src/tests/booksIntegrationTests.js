@@ -3,10 +3,9 @@ import should from 'should';
 /* eslint-disable-next-line */
 import request from 'supertest';
 import mongoose from 'mongoose';
+import app from '../app';
 
 process.env.ENV = 'Test';
-
-const app = require('../app.js');
 
 const Book = mongoose.model('Book');
 const agent = request.agent(app);

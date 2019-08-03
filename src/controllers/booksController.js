@@ -23,14 +23,15 @@ export default function booksController(Book) {
     }
 
     try {
-      console.log('about to query ********************************');
       const books = await Book.find(query);
-      console.log(books);
 
       const returnBooks = books.map(book => {
         const newBook = book.toJSON();
         newBook.links = {};
-        newBook.links.self = `https://${req.headers.host}/api/books/${book._id}`;
+        console.log('req.secure', req.secure);
+        newBook.links.self = `http${!req.secure ? 's' : ''}://${
+          req.headers.host
+        }/api/books/${book._id}`;
         return newBook;
       });
       return res.json(returnBooks);

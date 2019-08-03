@@ -30,7 +30,10 @@ bookRouter
     const returnBook = req.book.toJSON();
     returnBook.links = {};
     const genre = req.book.genre.replace(' ', '%20');
-    returnBook.links.FilterByThisGenre = `https://${req.headers.host}/api/books/?genre=${genre}`;
+    console.log('req.secure', req.secure);
+    returnBook.links.FilterByThisGenre = `http${!req.secure ? 's' : ''}://${
+      req.headers.host
+    }/api/books/?genre=${genre}`;
 
     res.json(returnBook);
   })
