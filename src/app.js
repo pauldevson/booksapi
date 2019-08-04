@@ -25,7 +25,6 @@ app.use(bodyParser.json());
 app.use('/api', bookRouter);
 
 app.get('/', (req, res) => {
-  console.log('req.secure', req.secure);
   res.json({
     books: `http${req.secure ? 's' : ''}://${req.headers.host}/api/books`,
   });

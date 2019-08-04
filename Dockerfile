@@ -8,15 +8,18 @@ COPY package.json .
 
 RUN npm install
 
-COPY src /usr/src/app/src
-
-# RUN npm run build
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
 COPY . .
+
+# Build
+RUN npm run clean
+RUN npm run build
+
+# If you are building your code for production
+RUN npm ci --only=production
+
+ENV PORT=3000
+ENV ENV=production
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "prod" ]
+CMD [ "npm", "run", "server:prod" ]
